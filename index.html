@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto final con html</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Convertidor de unidades:</h1>
+    <br><br>
+    <label for="Tipo">Elija que conversión desea realizar:</label>
+
+    <select name="Tipo" id="Tipo">
+      <option value="Metro">Metro a milla</option>
+      <option value="Milla">Milla a metro</option>
+      <option value="Gramo">Gramo a libra</option>
+      <option value="Libra">Libra a gramo</option>
+      <option value="Peso">Peso a dolar blue</option>
+      <option value="Dolar blue">Dolar blue a peso</option>
+    </select>
+        
+        <br><br>
+        <form id="formulario">
+            <fieldset>
+                <label for="In">A convertir:</label>
+                <input type="number" id="In">
+                <br><br>
+    
+                <button class="btn btn-primary m-5">Enviar</button>
+            </fieldset>
+        </form>
+        <br><br>
+        <div class="row">
+            <div class="col-12 text-center" id="resultado"></div>
+        </div>
+        <br><br>
+        <h2>Historial de conversiones:</h2> <button class="btn btn-secondary m-5" id="borrarHistorial">BORRAR HISTORIAL</button>
+        <br><br>
+        <button id="verHistorial" class="btn btn-success m-5">VER HISTORIAL</button>
+        <div id="contenedorHistorial"></div>
+
+        <script src="main.js"></script>
+            <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</body>
+</html>
