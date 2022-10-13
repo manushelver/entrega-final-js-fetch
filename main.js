@@ -9,18 +9,16 @@ class conversion{
     }
 }
 
-//Planeo modificar para poder elegir entrada y resultado pero por ahora dejo asi como esta para probar si uso bien el localstorage.
-// Tambien voy a agregar posibilidad de hacer sort y demas cosas con el historial
 
 formulario.addEventListener("submit",(e) => {
     e.preventDefault(); //Se evita que el boton refresque pagina.
-    
+    //Obtengo los datos
     const Tipo = document.getElementById("Tipo").value; 
     const In = document.getElementById("In").value;
     const resultado = convertir(In,Tipo);
     const tipoOut = opuesto(Tipo);
     const operacion = new conversion(Tipo,In,resultado,tipoOut);
-    
+    //los guardo en el historial y los muestro
     historial.push(operacion);
     localStorage.setItem("historial",JSON.stringify(historial));
     mostrarResultado(operacion);
@@ -61,17 +59,18 @@ borrarHistorial.addEventListener("click", () =>{
     });
 });
 
-function mostrarHistorial() { //Aca no estoy muy seguro que usar para mostrar el historial, por html queda medio feo. Acepto sugerencias
+function mostrarHistorial() { //Aca no estoy muy seguro que usar para mostrar el historial, por html queda medio feo.
     contenedorHistorial.innerHTML = ""; //Para que se resetee el contenedor
     const historialLocal = JSON.parse(localStorage.getItem("historial"));
     historialLocal.forEach(operacion => {
+        let {tipoIn, numero, tipoOut, resultado} = operacion;
         const div = document.createElement("div");
         div.innerHTML = `
                         <div style="border: thick solid black">
-                            <p>Tipo de entrada: ${operacion.tipoIn}</p>
-                            <p>Numero ingresado: ${operacion.numero}</p>
-                            <p>Tipo de resultado: ${operacion.tipoOut}</p>
-                            <p>Numero resultado: ${operacion.resultado}</p>
+                            <p>Tipo de entrada: ${tipoIn}</p>
+                            <p>Numero ingresado: ${numero}</p>
+                            <p>Tipo de resultado: ${tipoOut}</p>
+                            <p>Numero resultado: ${resultado}</p>
                         </div>
                         `;
         contenedorHistorial.appendChild(div);
@@ -91,7 +90,9 @@ const mostrarResultado = (operacion) => {
         backdrop: "#336fe7", //el fondo que tapa la pagina
         confirmButtonText: "Aceptar"
     });
-}
+};
+
+// Obtengo la tasa actual del dolar blue
 let tasaDolarBlue;
 const criptoYa = "https://criptoya.com/api/dolar";
     fetch(criptoYa)
@@ -103,7 +104,8 @@ const criptoYa = "https://criptoya.com/api/dolar";
             title: "No se pudo conectar a criptoYa",
             icon: "warning",
             confirmButtonText: "Aceptar"
-        })})
+        })});
+
 
 
 function convertir (valor, tipo){
